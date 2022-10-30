@@ -1,0 +1,209 @@
+/* genel kodları buraya yaz */
+
+
+:root {
+    --white: #fff;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --info: #17a2b8;
+    --dark: #343a40;
+    --light: #f8f9fa;
+}
+
+/* text color */
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.text-success { color: var(--success); }
+.text-danger { color: var(--danger); }
+.text-warning { color: var(--warning); }
+.text-info { color: var(--info); }
+.text-dark { color: var(--dark); }
+.text-light { color: var(--light); }
+
+/* bg-colors */
+.bg-primary { background-color: var(--primary); }
+.bg-secondary { background-color: var(--secondary); }
+.bg-success { background-color: var(--success); }
+.bg-danger { background-color: var(--danger); }
+.bg-warning { background-color: var(--warning); }
+.bg-info { background-color: var(--info); }
+.bg-dark { background-color: var(--dark); }
+.bg-light { background-color: var(--light); }
+
+/* buttons */
+.btn {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn-primary {
+    color: var(--white);
+    background-color: var(--primary);
+}
+
+.btn-secondary {
+    color: var(--white);
+    background-color: var(--secondary);
+}
+
+.btn-success {
+    color: var(--white);
+    background-color: var(--success);
+}
+
+
+.btn-danger {
+    color: var(--white);
+    background-color: var(--danger);
+}
+
+.btn-warning {
+    color: var(--white);
+    background-color: var(--warning);
+}
+
+.btn-dark {
+    color: var(--white);
+    background-color: var(--dark);
+}
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+}
+.btn-outline-primary {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--dark);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    color: var(--white);
+}
+
+/* flex items */
+.flex-items{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+/* flex ıtems içindeki divler */
+.flex-items > div{
+    padding: 20px;
+    flex-basis: 100%;  /* başlangıç genişliği */
+}
+/* flex columns */
+/* rowu flex container(kapsayıcı) yaptık. Altındakiler de flex items olur */
+
+.flex-columns.flex-reverse .row{ 
+    /* flex-colums özelliğine sahip olan div aynı zamanda flex-reverse de sahipse onun altındaki row elemana gel ve satırda yer değiştir */
+    flex-direction: row-reverse;
+    /* satırda yer değiştirir */
+}
+.flex-columns .row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;     /* içerik sığmadığında da alt alta gelsin */
+    width: 100%;
+}
+.flex-columns .column{
+    flex: 1;     /* iki sütununda eşit yer kaplaması için */
+}
+
+
+/* article clasına sahip olan flex colums daki columnlardan tek sayılı olanları seçer. even dersek parantez içinde o zaman da çift sayıları seçer*/
+.flex-columns.article .column:nth-child(add){
+    flex: 2;  
+    /* resme 2 birimlik değer verdi */
+}
+.flex-columns.article .column:nth-child(add){
+    flex: 3;  
+    /* sağdaki columna da 3 birimlik genişlik  verdi */
+}
+
+
+.flex-columns .column .column-1,
+.flex-columns .column .column-2
+{
+    height: 100%;    /* iki sütunda içerisinde bulunduğu elemanı %100 ünü kaplar */
+}
+.flex-columns .column-2{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;  
+    /* sağdaki div içeriği sol taraftan başlar alt alta gelir */
+    justify-content: center;  
+    /* dikeyde ortalar */
+    padding: 3rem;
+}
+.flex-columns img{
+    width: 100%;
+    height: 100%;
+}
+
+/* flex grid */
+.flex-grid .row{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 .4rem;
+}
+.flex-grid .column{
+    flex: 25%;
+    padding: 0 .4rem;
+}
+
+/* section */
+
+.section-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem;
+}
+.section-header h2{
+    font-size: 4rem;
+    margin: 2rem 0;
+}
+.section-padding{
+    padding: 2rem 2rem 4rem;
+}
+
+
+@media (max-width: 768px){
+    .flex-items{
+        /* flex items kapsayıcısı içine aldıklarımızın hepsi ekran daraltıldığında alt alta gelir */
+        flex-direction: column;
+    }
+    .flex-columns .column{
+        /* normalde %50 şer sütunlar olurken sayfa daraltıldığında alt alta gelerek her biri sayfanın %100 ünü kaplar */
+        flex: 100%;
+    }
+    .flex-items > div{
+        padding: 10px;
+    }
+
+    .flex-columns .column{
+        flex: 100% !important;  
+        /* baskın özellik olması için important verdik. Sayfa küçültüldüğünde elemanlar 100% genişliğe sığar */
+    }
+
+    .flex-grid .column{
+        /* ayfa daraldığında yan yana olan 4 resim yerine 2 resim gösterir */
+        flex: 50%;
+    }
+}
